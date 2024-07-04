@@ -1,0 +1,136 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    animation: cir 5s infinite;
+}
+
+.circle > div:first-child {
+    background-color: rgb(80, 211, 241);
+    height: 65%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    position: relative;
+
+    .pyramid {
+        position: relative;
+        width: 55%;
+        height: 60px;
+        background-color: transparent;
+        display: flex;
+    }
+
+    #py-right {
+        border-left: 60px solid transparent;
+        border-right: 50px solid transparent;
+        border-bottom: 60px solid rgb(190, 190, 190);
+        animation: shadeRight 5s ease infinite;
+        
+    }
+
+    #py-left {
+        border-left: 60px solid transparent;
+        border-right: 16px solid transparent;
+        border-bottom: 60.5px solid rgb(255, 255, 255);
+        position: absolute;
+        animation: shadeLeft 5s ease infinite;
+    }
+}
+
+.circle > div:nth-child(2) {
+    background-color: rgb(230, 230, 120);
+    height: 35%;
+    width: 100%;
+}
+
+.circle-2 {
+    width: 120%;
+    height: 100%;
+    background-color: transparent;
+    opacity: 1;
+    position: absolute;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    position: absolute;
+    animation: sunAnimation 5s cubic-bezier(0.4, 0.8, 0.8, 0.8) infinite;
+    top: 42px;
+
+    div:first-child {
+        width: 30px;
+        height: 30px;
+        border-radius: 100%;
+        background-color: yellow;
+        position: absolute;
+        left: -15px;
+    }
+}
+
+#py-shade {
+    position: absolute;
+    left: -100px;
+    height: 30px;
+    width: 360px;
+    bottom: -30px;
+    background: rgba(0,0,0,0.2);
+    clip-path: polygon(100px 0%, 210px 0%, 10% 80%);
+    animation: shade 5s cubic-bezier(1, 1, 1, 1) infinite;
+}
+
+@keyframes shade {
+    0% {clip-path: polygon(100px 0%, 210px 0%, 100% 10%);}
+    30% {clip-path: polygon(100px 0%, 210px 0%, 70% 100%);}
+    45% {clip-path: polygon(100px 0%, 210px 0%, 50% 60%);}
+    60% {clip-path: polygon(100px 0%, 210px 0%, 20% 100%);}
+    100% {clip-path: polygon(100px 0%, 210px 0%, 0% 10%);}
+}
+
+@keyframes sunAnimation {
+    0% {rotate: 0;}
+    30% {rotate: 60deg;}
+    100% {rotate: 180deg;}
+}
+
+@keyframes shadeRight {
+    0% {border-bottom: 60px solid rgb(190, 190, 190);}
+    30% {border-bottom: 60px solid rgb(200, 200, 200);}
+    60% {border-bottom: 60px solid rgb(255, 255, 255);}
+    100% {border-bottom: 60px solid rgb(255, 255, 255);}
+}
+
+@keyframes shadeLeft {
+    0% {border-bottom: 60.5px solid rgb(255, 255, 255);}
+    30% {border-bottom: 60.5px solid rgb(255, 255, 255);}
+    60% {border-bottom: 60.5px solid rgb(200, 200, 200);}
+    100% {border-bottom: 60.5px solid rgb(190, 190, 190);}
+}
+
+@keyframes cir {
+    0% {opacity: 0.1;}
+    40% {opacity: 1;}
+    80% {opacity: 1;}
+    to {opacity: 0;}
+}
