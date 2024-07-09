@@ -1,4 +1,4 @@
-const red = [1, 0.8, 1, 0.4, 0, 0.7, 0.3];
+const red = [2, 1, 1, 2, 1, 1.5, 0];
 const blue = [0, 1, 0.5, 0.2, 0.8, 0.4, 1];
 const mea = 60;
 
@@ -29,7 +29,7 @@ const updatePointCSS = (element, point) => {
 const updateElementCSS = (className, transformed, degrees, widths) => {
   const elements = document.querySelectorAll(`.${className} div`);
   elements.forEach((e, i) => i < transformed.length - 1 && updateEdgCSS(e, transformed[i], degrees[i], widths[i]));
-  
+
   const points = document.querySelectorAll(`#${className}-val p`);
   points.forEach((p, i) => i < transformed.length && updatePointCSS(p, transformed[i]));
 };
@@ -37,13 +37,13 @@ const updateElementCSS = (className, transformed, degrees, widths) => {
 const applyStyles = (array, nthChild, className) => {
   const styleSheet = document.createElement("style");
   document.head.appendChild(styleSheet);
-  
+
   array.forEach((value, index) => {
     styleSheet.sheet.insertRule(`
-      .axis > div:nth-child(${nthChild}) p:nth-child(${index + 1})::before {
-        content: "${value}";
-      }
-    `, styleSheet.sheet.cssRules.length);
+          .axis > div:nth-child(${nthChild}) p:nth-child(${index + 1})::before {
+            content: "${value}";
+          }
+        `, styleSheet.sheet.cssRules.length);
   });
 };
 
@@ -63,6 +63,29 @@ const addHoverEvent = (color) => {
   });
 };
 
+const createInputFields = (array, containerId, color) => {
+  const container = document.getElementById(containerId);
+  container.innerHTML = '';
+
+  array.forEach((value, index) => {
+    const input = document.createElement('input');
+    input.type = 'number';
+    input.value = value;
+    input.addEventListener('input', () => updateArrayValue(array, index, parseFloat(input.value), color));
+    container.appendChild(input);
+  });
+};
+
+const updateArrayValue = (array, index, newValue, color) => {
+  array[index] = newValue;
+  const transformed = transformArray(array, mea);
+  const widthEdges = calculateWidthEdges(transformed, mea);
+  const degrees = calculateDegrees(transformed, widthEdges);
+
+  updateElementCSS(color, transformed, degrees, widthEdges);
+  applyStyles(array, color === 'red' ? 1 : 3, color);
+};
+
 const redTransformed = transformArray(red, mea);
 const blueTransformed = transformArray(blue, mea);
 const widthEdgRed = calculateWidthEdges(redTransformed, mea);
@@ -78,3 +101,6 @@ applyStyles(blue, 3, 'blue');
 
 addHoverEvent('blue');
 addHoverEvent('red');
+
+createInputFields(red, 'red-array', 'red');
+createInputFields(blue, 'blue-array', 'blue');
