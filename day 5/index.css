@@ -1,0 +1,152 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgb(238, 185, 185);
+    color: rgb(114, 52, 7);
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    rotate: 45deg;
+}
+
+.box {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.left>div {
+    display: grid;
+    justify-content: center;
+}
+
+.left>div:first-child {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 220px;
+    gap: 10px;
+}
+
+.left>div:first-child div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cir {
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    background: conic-gradient(
+        rgb(114, 52, 7) 0deg,
+        rgb(114, 52, 7) 270deg,
+                transparent 270deg,
+                transparent 360deg
+            );
+    rotate: 135deg;
+}
+
+.small-cir {
+    width: 96%;
+    height: 96%;
+    border-radius: 100%;
+    overflow: hidden;
+    background: conic-gradient(
+        rgb(114, 52, 7) 0deg,
+        rgb(114, 52, 7) 270deg,
+                transparent 270deg,
+                transparent 360deg
+            );
+    rotate: 180deg;
+}
+
+.bg-cir {
+    width: 98%;
+    height: 98%;
+    border-radius: 100%;
+    overflow: hidden;
+    background-color: white;
+}
+
+.bg-img {
+    width: 94%;
+    height: 94%;
+    border-radius: 100%;
+    overflow: hidden;
+    background-color: white;
+}
+
+.left>div:first-child>div:last-child>p:first-child {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.left>div:first-child>div:last-child>p:last-child {
+    font-size: 14px;
+}
+
+.left > div:last-child {
+    align-self: flex-end;
+    width: 100%;
+    padding-bottom: 30px;
+}
+
+button {
+    width: 140px;
+    height: 40px;
+    border-radius: 20px;
+    margin: 4px;
+    font-weight: bold;
+    color: rgb(114, 52, 7);
+    background-color: white;
+    border: 1px solid rgb(114, 52, 7);
+}
+
+.right {
+    width: 140px;
+    display: grid;
+    gap: 2px;
+    background-color: white;
+
+}
+
+.right > div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: antiquewhite;
+}
+
+.right > div > p:first-child {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.right > div > p:last-child {
+    font-weight: bold;
+    font-size: 14px;
+}
+
